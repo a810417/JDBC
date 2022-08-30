@@ -1,0 +1,224 @@
+package com.ispan.project;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Project1Dao {
+
+	private Connection conn;
+
+	// 先建立連線用的 method
+	public void createConnection() throws SQLException {
+		String url = "jdbc:sqlserver://localhost:1433;databaseName=Project1CSV;trustServerCertificate=true";
+		this.conn = DriverManager.getConnection(url, "sa", "P@ssw0rd");
+		boolean status = !conn.isClosed();
+		if (status) {
+			System.out.println("連線開啟");
+		}
+	}
+
+	// 建立關閉連線用的 method
+	public void closeConnection() throws SQLException {
+		if (conn != null) {
+			// 連線 conn 不等於 null -> 有連線
+			conn.close();
+			System.out.println("\n關閉連線");
+		}
+	}
+
+	// -----------------------------------------------------------------------------
+	// 取得資料(從網站)
+	public List<String> getData() throws IOException {
+		String powerUrl = "https://data.taipower.com.tw/opendata/apply/file/d003002/001.csv"; // 取得資料網址
+		List<String> listData = new ArrayList<String>(); // 之後放資料的 Array
+		URL url = new URL(powerUrl); // new URL 物件來使用 method
+		InputStream ips = url.openStream(); // 取得資料的 stream
+		InputStreamReader ipsR = new InputStreamReader(ips, "UTF-8"); // 讀取 stream，編碼設定 UTF-8 較不會有亂碼
+		BufferedReader bfR = new BufferedReader(ipsR); // 用 BufferedReader 才可以一行一行讀取
+
+		System.out.println("標題" + bfR.readLine()); // 先讀取第一行(標題列)，後面再讀取才不會影響資料
+		String content = ""; // 設定空字串來使用
+		while (bfR.ready()) { // while loop 來填入資料
+			content = bfR.readLine(); // 讀取一行資料後塞入字串中
+			listData.add(content); // 將字串資料加入 List
+		}
+//		for (String oneRow : listData) { // 讀取 List 中所有資料
+//			System.out.println("oneRow: " + oneRow);
+//		}
+		bfR.close();
+		ipsR.close();
+		ips.close();
+
+		return listData;
+	}
+	
+
+	// -----------------------------------------------------------------------------
+	// 插入資料(輸入資料庫 SQL Server)
+	public void insertData(String dataYear, int MW, double powerBackUp) throws SQLException {
+		String sql = " INSERT INTO powerAnalysis(dataYear, MW, powerBackUp) VALUES (?, ?, ?);";
+		PreparedStatement preState = conn.prepareStatement(sql);
+		preState.setString(1, dataYear);
+		preState.setInt(2, MW);
+		preState.setDouble(3, powerBackUp);
+
+		int row = preState.executeUpdate();
+		System.out.println("\n新增了 " + row + " 筆資料!");
+		preState.close();
+	}
+	
+
+	// -----------------------------------------------------------------------------
+	// 讀取資料(從 SQL Server)
+	public List<Project1DataBean> readData() throws SQLException {
+		String sql = "select * from powerAnalysis";
+		Statement state = conn.createStatement();
+		ResultSet rs = state.executeQuery(sql);
+
+		List<Project1DataBean> list = new ArrayList<Project1DataBean>();
+		while (rs.next()) {
+			Project1DataBean bean = new Project1DataBean();
+			bean.setId(rs.getInt("id"));
+			bean.setDataYear(rs.getString("dataYear"));
+			bean.setMW(rs.getInt("MW"));
+			bean.setPowerBackUp(rs.getDouble("powerBackUp"));
+			list.add(bean);
+		}
+		rs.close();
+		state.close();
+		System.out.println("\n查詢完成!");
+		return list;
+	}
+
+	// 抓 1 個資料
+	public Project1DataBean readDataById(int id) throws SQLException {
+		String sql = "select * from powerAnalysis where id = ?;";
+		PreparedStatement preState = conn.prepareStatement(sql);
+		preState.setInt(1, id);
+		ResultSet rs = preState.executeQuery();
+		rs.next();
+
+		Project1DataBean bean = new Project1DataBean();
+		bean.setId(rs.getInt("id"));
+		bean.setDataYear(rs.getString("dataYear"));
+		bean.setMW(rs.getInt("MW"));
+		bean.setPowerBackUp(rs.getDouble("powerBackUp"));
+
+		rs.close();
+		preState.close();
+		return bean;
+	}
+	
+	public Project1DataBean readDataByYear(String dataYear) throws SQLException {
+		String sql = "select * from powerAnalysis where dataYear = ?;";
+		PreparedStatement preState = conn.prepareStatement(sql);
+		preState.setString(1, dataYear);
+		ResultSet rs = preState.executeQuery();
+		rs.next();
+
+		Project1DataBean bean = new Project1DataBean();
+		bean.setId(rs.getInt("id"));
+		bean.setDataYear(rs.getString("dataYear"));
+		bean.setMW(rs.getInt("MW"));
+		bean.setPowerBackUp(rs.getDouble("powerBackUp"));
+
+		rs.close();
+		preState.close();
+		return bean;
+	}
+	
+	
+	// -----------------------------------------------------------------------------
+	// 印出資料
+	public void printData(Project1DataBean bean) {
+		System.out.println("ID,  年度,  尖峰負載,  備用容量率(%)");
+		System.out.println(String.valueOf(bean.getId()) + ",    " + String.valueOf(bean.getDataYear()) + ",   "
+				+ String.valueOf(bean.getMW()) + ",   " + String.valueOf(bean.getPowerBackUp()));
+	}
+	
+
+	// -----------------------------------------------------------------------------
+	// 刪除資料(刪除 SQL Server 中資料庫的資料)
+	public void deleteDataById(int id) throws SQLException {
+		String sql = "delete from powerAnalysis where id = ?";
+		PreparedStatement preStateById = conn.prepareStatement(sql);
+		preStateById.setInt(1, id);
+		preStateById.executeUpdate();
+		preStateById.close();
+		System.out.println("\n刪除資料完成!");
+		preStateById.close();
+	}
+
+	public void deleteDataByModel(Project1DataBean dao) throws SQLException {
+		String sql = "delete from powerAnalysis where id = ?";
+		PreparedStatement preStateModel = conn.prepareStatement(sql);
+		preStateModel.setInt(1, dao.getId());
+		preStateModel.execute();
+		preStateModel.close();
+		System.out.println("\n刪除資料完成!");
+		preStateModel.close();
+	}
+	
+
+	// -----------------------------------------------------------------------------
+	// 修改資料(修改 SQL Server 中資料庫的資料)
+	// 根據 ID 修改資料年分[dataYear]
+	public void updateDataById(int id, String newYear) throws SQLException {
+		String sql = "update powerAnalysis set dataYear = ? where id = ?";
+		PreparedStatement preStateById = conn.prepareStatement(sql);
+		preStateById.setString(1, newYear);
+		preStateById.setInt(2, id);
+		int row = preStateById.executeUpdate();
+		System.out.println("\n修改了: " + row + "筆資料");
+		preStateById.close();
+		System.out.println("\n修改資料完成!");
+	}
+
+	// 根據 物件 修改資料年分[dataYear]
+	public void updateYearByModel(Project1DataBean dao, String newYear) throws SQLException {
+		String sql = "update powerAnalysis set dataYear = ? where id = ?";
+		PreparedStatement preStateById = conn.prepareStatement(sql);
+		preStateById.setString(1, newYear);
+		preStateById.setInt(2, dao.getId());
+		int row = preStateById.executeUpdate();
+		System.out.println("\n修改了: " + row + "筆資料");
+		preStateById.close();
+		System.out.println("\n修改資料完成!");
+
+	}
+	// 根據 物件 修改資料尖峰負載MW[MW]
+	public void updateMWByModel(Project1DataBean dao, int MW) throws SQLException {
+		String sql = "update powerAnalysis set MW = ? where id = ?";
+		PreparedStatement preStateById = conn.prepareStatement(sql);
+		preStateById.setInt(1, MW);
+		preStateById.setInt(2, dao.getId());
+		int row = preStateById.executeUpdate();
+		System.out.println("\n修改了: " + row + "筆資料");
+		preStateById.close();
+
+	}
+	// 根據 物件 修改資料 PowerBackUp 備用容量率(%)[powerBackUp]
+	public void updatepowerBackUpByModel(Project1DataBean dao, double powerBackUp) throws SQLException {
+		String sql = "update powerAnalysis set powerBackUp = ? where id = ?";
+		PreparedStatement preStateById = conn.prepareStatement(sql);
+		preStateById.setDouble(1, powerBackUp);
+		preStateById.setInt(2, dao.getId());
+		int row = preStateById.executeUpdate();
+		System.out.println("\n修改了: " + row + "筆資料");
+		preStateById.close();
+		System.out.println("\n修改資料完成!");
+
+	}
+
+}

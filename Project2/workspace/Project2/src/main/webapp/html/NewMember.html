@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>New Member data</title>
+	<style>
+		figcaption {
+			font-size: 5px;
+			color: gray
+		}
+	</style>
+</head>
+
+<body style="background-color:#fdf5e6" align="center">
+	<h2>新增會員資料</h2>
+	<form action="../InsertMem" method="post" enctype="multipart/form-data">
+		<fieldset>
+			<legend>新增資料</legend>
+			<div class="st1">
+				<figure>
+					<label for="account" class="t1">帳號：</label>
+					<input type="text" id="userAccount" name="userAccount" placeholder="account" autofocus
+						>
+					<span id="idspAccount"></span><br />
+					<figcaption class="fc"><br />(1.不可空白, 2.至少輸入2個字以上, 3.必須為英文字)</figcaption>
+				</figure>
+			</div>
+			<div class="st1">
+				<figure>
+					<label for="pwd" class="t1">密碼：</label>
+					<input type="password" id="userPassword" name="userPassword" maxlength="12" placeholder="P@ssword"
+						required>
+					<span id="idspPwd"></span><br />
+					<figcaption class="fc"><br />(1.不可空白, 2.請輸入6~12個字, 3.必須包含英數字、特殊字元[!@#$%^&*])</figcaption>
+				</figure>
+			</div>
+			<div class="st1">
+				<figure>
+					<label for="gender" class="t1">性別：</label>
+					<!-- <input type="text" id="userGender" name="userGender" placeholder="Male/Female"> -->
+					<select name="userGender" id="userGender">
+						<option disabled selected>請選擇性別</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+					</select>
+					<span id="idspDate"></span><br />
+					<figcaption class="fc"><br />請選擇生理性別</figcaption>
+				</figure>
+			</div>
+			<div class="st1">
+				<figure>
+					<label for="height" class="t1">身高：</label>
+					<input type="text" id="userHeight" name="userHeight" placeholder="cm" required>
+					<span id="idspH"></span><br />
+					<figcaption class="fc"><br />請輸入數字整數(單位：cm)</figcaption>
+				</figure>
+			</div>
+			<div class="st1">
+				<figure>
+					<label for="height" class="t1">體重：</label>
+					<input type="text" id="userWeight" name="userWeight" placeholder="kg" required>
+					<span id="idspH"></span><br />
+					<figcaption class="fc"><br />請輸入數字整數(單位：kg)</figcaption>
+				</figure>
+			</div>
+
+		</fieldset>
+		<br>
+		<div class="sub">
+			<input type="submit" value="送出">
+			<input type="reset" value="清除">
+		</div>
+	</form>
+</body>
+
+</html>
