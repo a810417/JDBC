@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member Data</title>
+</head>
+<h1>登入</h1>
+<form action="../QueryMem" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="account" class="t1">帳號：</label>
+        <input type="text" id="userAccount" name="userAccount" placeholder="account" autofocus required>
+        <span id="idspAccount"></span><br />
+    </div>
+    <div>
+        <label for="pwd" class="t1">密碼：</label>
+        <input type="password" id="userPassword" name="userPassword" maxlength="12" placeholder="password" required>
+        <span id="idspPwd"></span><br />
+    </div>
+    <br />
+    <div class="sub">
+        <input type="submit" value="送出">
+        <input type="reset" value="清除">
+    </div>
+</form>
+
+<body>
+
+</body>
+
+</html>

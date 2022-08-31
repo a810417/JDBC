@@ -40,3 +40,9 @@ drop table likes;
 select * from users;
 select * from photos;
 select * from likes;
+
+truncate table likes;
+truncate table photos;
+truncate table users;
+
+UPDATE users SET userPassword='man001', userGender='female', userHeight=160, userWeight=45 WHERE userName='man001';

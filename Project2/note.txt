@@ -1,0 +1,62 @@
+// Connection Pool
+Context context = new InitialContext();
+DataSource ds = (DataSource)context.lookup("java:/comp/env/jdbc/Project2_LoverMaker");
+conn = ds.getConnection();
+
+// search data
+PreparedStatement preState = conn.prepareStatement(SQL);
+			ResultSet rs = preState.executeQuery();
+			List<EmpBean> emps = new ArrayList<>();
+			EmpBean emp = null;
+
+			while (rs.next()) {
+				emp = new EmpBean();
+				emp.setEmpno(rs.getString("empno"));
+				emp.setEname(rs.getString("ename"));
+				emp.setHiredate(rs.getString("hiredate"));
+				emp.setSalary(rs.getString("salary"));
+				emp.setDeptno(rs.getString("deptno"));
+				emp.setTitle(rs.getString("title"));
+				emps.add(emp);
+			}
+			request.setAttribute("emps", emps);
+			request.getRequestDispatcher("/m13/GetAllEmps.jsp").forward(request, response);
+			rs.close();
+			preState.close();
+
+// search data 2
+preState.setString(1, empno);
+			ResultSet rs = preState.executeQuery();
+			EmpBean emp = new EmpBean();
+			if (rs.next()) {
+				emp.setEmpno(rs.getString("empno"));
+				emp.setEname(rs.getString("ename"));
+				emp.setHiredate(rs.getString("hiredate"));
+				emp.setSalary(rs.getString("salary"));
+				emp.setDeptno(rs.getString("deptno"));
+				emp.setTitle(rs.getString("title"));
+			}
+			request.setAttribute("emp", emp);
+			rs.close();
+			preState.close();
+			request.getRequestDispatcher("/m10/GetUpdateEmp.jsp").forward(request, response);
+
+
+// Server.xml
+  <GlobalNamingResources>
+    <!-- Editable user database that can also be used by
+         UserDatabaseRealm to authenticate users
+    -->
+    <Resource auth="Container" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" initialSize="5" maxIdle="5" maxTotal="8" maxWaitMillis="-1" name="jdbc/Project2_LoverMaker" password="P@ssw0rd" poolPreparedStatements="true" type="javax.sql.DataSource" url="jdbc:sqlserver://localhost:1433;databaseName=Project2_LoverMaker;trustServerCertificate=true" username="sa" validationQuery="select 1"/>
+    
+  </GlobalNamingResources>
+
+// context.xml
+<ResourceLink
+    	type="javax.sql.DataSource"
+    	global="jdbc/Project2_LoverMaker"
+    	name="jdbc/Project2_LoverMaker"
+     />
+
+<td><input name="userGender" type="text"
+						value="<%=mem.getUserGender()%>"></td>
