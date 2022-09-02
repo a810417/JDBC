@@ -13,18 +13,15 @@ userWeight int not null,
 createTime datetime default getdate()
 )
 
-drop table users;
-
 -- table photos
 create table photos(
 photoID int primary key identity(1,1)¡@not null,
-imageURL varchar(255) not null,
+--imageURL varchar(255) not null,
+imageFile varbinary(max) not null,
 userID int not null,
 foreign key (userID) references users(userID),
 createTime datetime default getdate()
 )
-
-drop table photos;
 
 -- table likes
 create table likes(
@@ -35,8 +32,7 @@ foreign key (sendLikeID) references users(userID),
 createTime datetime default getdate()
 )
 
-drop table likes;
-
+-- ·j´Mtable
 select * from users;
 select * from photos;
 select * from likes;
@@ -45,4 +41,13 @@ truncate table likes;
 truncate table photos;
 truncate table users;
 
+-- §R°£table
+drop table likes;
+drop table photos;
+drop table users;
+
 UPDATE users SET userPassword='man001', userGender='female', userHeight=160, userWeight=45 WHERE userName='man001';
+
+delete from likes where userID=;
+delete from photos where userID=2;
+delete from users where userID=4;

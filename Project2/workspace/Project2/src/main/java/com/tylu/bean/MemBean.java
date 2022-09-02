@@ -8,6 +8,8 @@ public class MemBean implements java.io.Serializable {
 	private String userGender;
 	private String userHeight;
 	private String userWeight;
+	private String photoPath;
+	
 	public String getUserID() {
 		return userID;
 	}
@@ -25,6 +27,9 @@ public class MemBean implements java.io.Serializable {
 	}
 	public String getUserWeight() {
 		return userWeight;
+	}	
+	public String getPhotoPath() {
+		return photoPath;
 	}
 	public void setUserID(String userID) {
 		this.userID = userID;
@@ -44,5 +49,9 @@ public class MemBean implements java.io.Serializable {
 	public void setUserWeight(String userWeight) {
 		this.userWeight = userWeight;
 	}
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+	
 
 }
