@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"   import="java.sql.*,java.util.*,java.awt.*,java.awt.image.*,
+java.util.*"%>
 	<!DOCTYPE html>
 	<html>
 
@@ -33,6 +34,10 @@
 					<td><img src="http://localhost:8080/Project2/image/<%=mem.getUserID()%>.jpg" alt="MemberPhoto"
 							width="400px" height="300px">
 					</td>
+					<td>
+										
+					</td>
+					<br />
 					<td><span><%=mem.getUserID()%></span>
 					</td>
 				</tr>

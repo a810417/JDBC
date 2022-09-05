@@ -88,7 +88,8 @@ public class Project2DAO {
 		Part partPhoto = request.getPart("userPhoto");
 		InputStream sPhoto = partPhoto.getInputStream();
 		File temPic = new File(userAccount + ".jpg");
-		String photoPath = new String("C:/JDBC/Project2/workspace/Project2/src/main/webapp/image/" + temPic);
+//		String photoPath = new String("C:/JDBC/Project2/workspace/Project2/src/main/webapp/image/" + temPic);
+		String photoPath = new String("C:/Users/Student/Desktop/image/" + temPic);
 		OutputStream out = new FileOutputStream(photoPath);
 		byte[] buf = new byte[256];
 		while (sPhoto.read(buf) != -1) {
@@ -139,8 +140,9 @@ public class Project2DAO {
 		ResultSet photoRS = preState3.executeQuery();
 		photoRS.next();
 		Blob SQLphoto = photoRS.getBlob("imageFile");
-		File temPic = new File(userID + ".png");
-		String photoPath = new String("C:/JDBC/Project2/workspace/Project2/src/main/webapp/image/" + temPic);
+		File temPic = new File(userID + ".jpg");
+//		String photoPath = new String("C:/JDBC/Project2/workspace/Project2/src/main/webapp/image/" + temPic);
+		String photoPath = new String("C:/Users/Student/Desktop/image/" + temPic);
 		FileOutputStream fos = new FileOutputStream(photoPath);
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
 		bos.write(SQLphoto.getBytes(1, (int) SQLphoto.length()));

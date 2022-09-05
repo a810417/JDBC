@@ -56,6 +56,7 @@ public class NewMem extends HttpServlet {
 			// 照片輸入DB
 			dao.insertPhotoinDB(request, userAccount);
 			// DB取出照片建檔
+			dao.newPhotoFromDB(userAccount);
 			
 			String id = dao.getID(userAccount);
 
