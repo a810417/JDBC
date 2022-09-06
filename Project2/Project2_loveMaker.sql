@@ -51,3 +51,5 @@ UPDATE users SET userPassword='man001', userGender='female', userHeight=160, use
 delete from likes where userID=;
 delete from photos where userID=2;
 delete from users where userID=4;
+
+INSERT INTO users (userName, userPassword, userGender, userHeight, userWeight) VALUES ('Alan', 'aaa000', 'Male', 180, 70);
