@@ -53,3 +53,5 @@ delete from photos where userID=2;
 delete from users where userID=4;
 
 INSERT INTO users (userName, userPassword, userGender, userHeight, userWeight) VALUES ('Alan', 'aaa000', 'Male', 180, 70);
+
+select * from users 

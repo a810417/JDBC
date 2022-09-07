@@ -13,9 +13,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
+
+import com.tylu.bean.MemBean;
 
 public class Project2DAO {
 
@@ -27,6 +32,7 @@ public class Project2DAO {
 	private static final String SQL2 = "INSERT INTO photos (imageFile, userID) VALUES (?, ?);";
 	private static final String SQLUserID = "SELECT userID FROM users WHERE userName = ?";
 	private static final String SQL3 = "SELECT imageFile FROM photos WHERE userID = ?";
+	private static final String SQLALLUSERS = "select * from users";
 
 	private Connection conn;
 
@@ -127,6 +133,7 @@ public class Project2DAO {
 		sPhoto.close();
 	}
 
+	// 從資料庫寫出照片檔案
 	public void newPhotoFromDB(String userAccount) throws SQLException, IOException {
 		PreparedStatement tempState = conn.prepareStatement(SQLUserID);
 		tempState.setString(1, userAccount);
@@ -149,6 +156,55 @@ public class Project2DAO {
 		bos.close();
 		fos.close();
 		photoRS.close();
+	}
 
+	// 搜尋所有使用者
+	public List<MemBean> queryAllMem() throws SQLException {
+		PreparedStatement preState = conn.prepareStatement(SQLALLUSERS);
+		ResultSet rs = preState.executeQuery();
+		List<MemBean> mems = new ArrayList<>();
+		MemBean mem = null;
+		while (rs.next()) {
+			mem = new MemBean();
+			mem.setUserID(rs.getString("userID"));
+			mem.setUserAccount(rs.getString("userName"));
+			mem.setUserGender(rs.getString("userGender"));
+			mem.setUserHeight(rs.getString("userHeight"));
+			mem.setUserWeight(rs.getString("userWeight"));
+			mems.add(mem);
+		}
+		rs.close();
+		preState.close();
+		return mems;
+	}
+
+	// 模糊查詢
+	public List<MemBean> queryMemLike(String searchWord) throws SQLException {
+		String sql = "select * from users where userID LIKE ? OR  userName LIKE ? OR userGender LIKE ? OR userHeight LIKE ? OR userWeight LIKE ?";
+
+		PreparedStatement preState = conn.prepareStatement(sql);
+		preState.setString(1, "%" + searchWord + "%");
+		preState.setString(2, "%" + searchWord + "%");
+		preState.setString(3, "%" + searchWord + "%");
+		preState.setString(4, "%" + searchWord + "%");
+		preState.setString(5, "%" + searchWord + "%");
+		ResultSet rs = preState.executeQuery();
+		
+		List<MemBean> mems = new ArrayList<>();
+		MemBean mem = null;
+
+		while (rs.next()) {
+			mem = new MemBean();
+			mem.setUserID(rs.getString("userID"));
+			mem.setUserAccount(rs.getString("userName"));
+			mem.setUserGender(rs.getString("userGender"));
+			mem.setUserHeight(rs.getString("userHeight"));
+			mem.setUserWeight(rs.getString("userWeight"));
+			mems.add(mem);
+		}
+		
+		rs.close();		
+		preState.close();
+		return mems;
 	}
 }

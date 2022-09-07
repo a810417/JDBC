@@ -10,7 +10,7 @@
     <body style="background-color:#fdf5e6" align="center">
         <div align="center">
             <h2>修 改 後 會 員 資 料</h2>
-            <form method="post" action="http://localhost:8080/Project2/UpdateMem">
+            
                 <jsp:useBean id="memNew" scope="request" class="com.tylu.bean.MemBean" />
                 <table>
                    
@@ -38,7 +38,7 @@
                 <h3 style="color:red">修 改 完 成 !</h3>
 
         </div>
-        </form>
+       
     </body>
 
     </html>

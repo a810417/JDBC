@@ -2,6 +2,7 @@ package com.tylu.project2;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 import javax.servlet.ServletException;
