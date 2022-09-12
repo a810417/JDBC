@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"   import="java.sql.*,java.util.*,java.awt.*,java.awt.image.*,
-java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*,java.util.*,java.awt.*,java.awt.image.*,
+java.util.*" %>
 	<!DOCTYPE html>
 	<html>
 
@@ -35,16 +35,19 @@ java.util.*"%>
 							width="400px" height="300px">
 					</td>
 					<td>
-										
+
 					</td>
 					<br />
-					<td><span><%=mem.getUserID()%></span>
+					<td><span>
+							<%=mem.getUserID()%>
+						</span>
 					</td>
 				</tr>
 
 
 			</table>
 			<h3 style="color: red">新 增 完 成 !</h3>
+			<button><a href="http://localhost:8080/Project2/html/HomePage.html">首頁</a></button>
 		</div>
 	</body>
 

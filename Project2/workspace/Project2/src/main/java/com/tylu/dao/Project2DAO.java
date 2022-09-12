@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Blob;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -206,5 +207,22 @@ public class Project2DAO {
 		rs.close();		
 		preState.close();
 		return mems;
+	}
+	
+	// 刪除資料
+	public void deleteMember(String userAccount) throws SQLException {
+		String deleteMem = "DELETE FROM users WHERE userName = ?";
+		String deletePhoto = "DELETE FROM photos WHERE userID = ?";
+		
+		Project2DAO temDao = new Project2DAO();
+		String id = temDao.getID(userAccount);
+		PreparedStatement preState1 = conn.prepareStatement(deleteMem);
+		PreparedStatement preState2 = conn.prepareStatement(deletePhoto);
+		preState1.setString(1, userAccount);
+		preState2.setString(1, id);
+		preState1.executeUpdate();
+		preState2.executeUpdate();
+		preState1.close();
+		preState2.close();
 	}
 }

@@ -6,22 +6,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首頁</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
     #homePic {
         width: 100%;
         height: 800px;
     }
+
+    html {
+        box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+
+    body {
+        padding: 20px 0;
+    }
+
+    h1,
+    h2 {
+        margin: 0;
+        padding: 10px;
+    }
+
+    nav>ul {
+        background-color: rgb(230, 230, 230);
+        list-style: none;
+        /* 移除項目符號 */
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        color: inherit;
+        /* 移除超連結顏色 */
+        display: block;
+        /* 讓 <a> 填滿 <li> */
+        font-size: 1.2rem;
+        padding: 10px;
+        text-decoration: none;
+        /* 移除超連結底線 */
+    }
+
+    /* 滑鼠移到 <a> 時變成深底淺色 */
+    nav li:hover {
+        background-color: rgb(115, 115, 115);
+        color: white;
+    }
+
+    .flex-nav {
+        display: flex;
+        justify-content: center;
+    }
+
+    .inline-block-nav {
+        text-align: center;
+        font-size: 0;
+        /* 移除 <li> 之間的空隙 */
+    }
+
+    .inline-block-nav>li {
+        display: inline-block;
+    }
 </style>
 
 <body>
-    <h1>Home Page</h1>
-
+    <nav>
+        <ul class="flex-nav">
+            <li><a href="#"> 首頁 </a></li>
+            <li><a href="http://localhost:8080/Project2/html/NewMember.html"> 註冊 </a></li>
+            <li><a href="#"> 登入 </a></li>
+            <!-- <li><a href="#">辦公室生產力</a></li>
+            <li><a href="#">個人成長</a></li>
+            <li><a href="#">設計</a></li>
+            <li><a href="#">通訊工程與軟體</a></li> -->
+        </ul>
+    </nav>
     <img src="../image/dating.jpg" alt="" id="homePic">
 
 </body>
