@@ -35,7 +35,8 @@ public class QueryDelMem extends HttpServlet {
 		
 		// 取得網頁傳送的變數
 		// userAccount
-		String userAccount = request.getParameter("userAccount");		
+		String userAccount = request.getParameter("userAccount");	
+		System.out.println(userAccount);
 
 		try {
 			// 開啟連線

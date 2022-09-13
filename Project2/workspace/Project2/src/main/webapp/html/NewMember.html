@@ -1,85 +1,246 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>New Member data</title>
-	<style>
-		figcaption {
-			font-size: 5px;
-			color: gray
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
+
+        *,
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background-color: #152733;
+            overflow: hidden;
+        }
+
+        .form-holder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .form-holder .form-content {
+            position: relative;
+            text-align: center;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+            padding: 60px;
+        }
+
+        .form-content .form-items {
+            border: 3px solid #fff;
+            padding: 40px;
+            display: inline-block;
+            width: 100%;
+            min-width: 540px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            text-align: left;
+            -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+
+        .form-content h3 {
+            color: #fff;
+            text-align: left;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-content h3.form-title {
+            margin-bottom: 30px;
+        }
+
+        .form-content p {
+            color: #fff;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-content label,
+        .was-validated .form-check-input:invalid~.form-check-label,
+        .was-validated .form-check-input:valid~.form-check-label {
+            color: #fff;
+        }
+
+        .form-content input[type="text"],
+        .form-content input[type="password"],
+        .form-content input[type="email"],
+        .form-content select {
+            width: 90%;
+            padding: 9px 20px;
+            text-align: left;
+            border: 0;
+            outline: 0;
+            border-radius: 6px;
+            background-color: #fff;
+            font-size: 15px;
+            font-weight: 300;
+            color: #8d8d8d;
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .btn-primary {
+            background-color: #6c757d;
+            outline: none;
+            border: 0px;
+            box-shadow: none;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active {
+            background-color: #495056;
+            outline: none !important;
+            border: none !important;
+            box-shadow: none;
+        }
+
+        .form-content textarea {
+            position: static !important;
+            width: 100%;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-align: left;
+            background-color: #fff;
+            border: 0;
+            font-size: 15px;
+            font-weight: 300;
+            color: #8d8d8d;
+            outline: none;
+            resize: none;
+            height: 120px;
+            -webkit-transition: none;
+            transition: none;
+            margin-bottom: 14px;
+        }
+
+        .form-content textarea:hover,
+        .form-content textarea:focus {
+            border: 0;
+            background-color: #ebeff8;
+            color: #8d8d8d;
+        }
+
+        .mv-up {
+            margin-top: -9px !important;
+            margin-bottom: 8px !important;
+        }
+
+        .invalid-feedback {
+            color: #ff606e;
+        }
+
+        .valid-feedback {
+            color: #2acc80;
+        }
+    </style>
+    <script>
+        (function () {
+            'use strict'
+            const forms = document.querySelectorAll('.requires-validation')
+            Array.from(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+    </script>
 </head>
 
-<body style="background-color:#fdf5e6" align="center">
-	<h2>新增會員資料</h2>
-	<form action="../NewMem" method="post" enctype="multipart/form-data">
-		<fieldset>
-			<legend>新增資料</legend>
-			<div class="st1">
-				<figure>
-					<label for="account" class="t1">帳號：</label>
-					<input type="text" id="userAccount" name="userAccount" placeholder="account" autofocus>
-					<span id="idspAccount"></span><br />
-					<figcaption class="fc"><br />(1.不可空白, 2.至少輸入2個字以上, 3.必須為英文字)</figcaption>
-				</figure>
-			</div>
-			<div class="st1">
-				<figure>
-					<label for="pwd" class="t1">密碼：</label>
-					<input type="password" id="userPassword" name="userPassword" maxlength="12" placeholder="P@ssword"
-						required>
-					<span id="idspPwd"></span><br />
-					<figcaption class="fc"><br />(1.不可空白, 2.請輸入6~12個字, 3.必須包含英數字、特殊字元[!@#$%^&*])</figcaption>
-				</figure>
-			</div>
-			<div class="st1">
-				<figure>
-					<label for="gender" class="t1">性別：</label>
-					<!-- <input type="text" id="userGender" name="userGender" placeholder="Male/Female"> -->
-					<select name="userGender" id="userGender">
-						<option disabled selected>請選擇性別</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-					<span id="idspDate"></span><br />
-					<figcaption class="fc"><br />請選擇生理性別</figcaption>
-				</figure>
-			</div>
-			<div class="st1">
-				<figure>
-					<label for="height" class="t1">身高：</label>
-					<input type="text" id="userHeight" name="userHeight" placeholder="cm" required>
-					<span id="idspH"></span><br />
-					<figcaption class="fc"><br />請輸入數字整數(單位：cm)</figcaption>
-				</figure>
-			</div>
-			<div class="st1">
-				<figure>
-					<label for="weight" class="t1">體重：</label>
-					<input type="text" id="userWeight" name="userWeight" placeholder="kg" required>
-					<span id="idspW"></span><br />
-					<figcaption class="fc"><br />請輸入數字整數(單位：kg)</figcaption>
-				</figure>
-			</div>
-			<div class="st1">
-				<figure>
-					<label for="photo" class="t1">照片：</label>
-					<input type="file" id="userPhoto" name="userPhoto">
-					<span id="spPhoto"></span><br />
-					<figcaption class="fc"><br />上傳照片</figcaption>
-								</div>
+<body>
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Register Today</h3>
+                        <p>Fill in the data below.</p>
+                        <form action="../NewMem" method="post" enctype="multipart/form-data" class="requires-validation"
+                            novalidate>
 
-		</fieldset>
-		<br>
-		<div class="sub">
-			<input type="submit" value="送出">
-			<input type="reset" value="清除">
-		</div>
-	</form>
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" id="userAccount" name="userAccount"
+                                    placeholder="Account" required>
+
+                            </div>
+                            <div class="col-md-12">
+                                <input class="form-control" type="password" id="userPassword" name="userPassword"
+                                    placeholder="Password" required>
+
+                            </div>
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" id="userHeight" name="userHeight"
+                                    placeholder="Height" required>
+                            </div>
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" id="userWeight" name="userWeight"
+                                    placeholder="Weight" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <select name="userGender" id="userGender" class="form-select mt-3" required>
+                                    <option selected disabled value="">Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12"></div>
+                            <br />
+                            <div class="col-md-12 mt-3">
+                                <label class="mb-3 mr-1" for="photo">Photo: </label>
+                                <input type="file" id="userPhoto" name="userPhoto" class="btn btn-primary">
+
+                            </div>
+
+                            <br />
+
+                            <div class="form-button mt-3">
+                                <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

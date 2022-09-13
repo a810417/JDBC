@@ -25,7 +25,7 @@ public class DeleteMem extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+//		request.setCharacterEncoding("UTF-8");
 				
 		String userAccount = request.getParameter("userAccount");
 		
