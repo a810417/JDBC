@@ -35,6 +35,7 @@ public class UpdateMem extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+//		request.setCharacterEncoding("UTF-8");
 
 		// 取得網頁傳送的變數
 		// userAccount
@@ -46,18 +47,22 @@ public class UpdateMem extends HttpServlet {
 		Part partPassword = request.getPart("userPassword");
 		Scanner sPassword = new Scanner(partPassword.getInputStream());
 		String userPassword = sPassword.nextLine();
+		System.out.println(userPassword);
 		// userGender
 		Part partGender = request.getPart("userGender");
 		Scanner sGender = new Scanner(partGender.getInputStream());
 		String userGender = sGender.nextLine();
+		System.out.println(userGender);
 		// userHeight
 		Part partHeight = request.getPart("userHeight");
 		Scanner sHeight = new Scanner(partHeight.getInputStream());
 		String userHeight = sHeight.nextLine();
+		System.out.println(userHeight);
 		// userWeight
 		Part partWeight = request.getPart("userWeight");
 		Scanner sWeight = new Scanner(partWeight.getInputStream());
 		String userWeight = sWeight.nextLine();
+		System.out.println(userWeight);
 
 		try {
 			// 開啟連線

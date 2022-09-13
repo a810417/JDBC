@@ -2,6 +2,7 @@ package com.tylu.project2;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -22,6 +23,8 @@ public class NewMem extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
 
 		// 取得網頁傳送的變數
 		// userAccount
@@ -59,7 +62,10 @@ public class NewMem extends HttpServlet {
 			// DB取出照片建檔
 			dao.newPhotoFromDB(userAccount);
 			
+
+			// DB取出照片顯示
 			String id = dao.getID(userAccount);
+//			dao.getPhotoStream(id, response);
 
 			// 設置 Bean 傳送給 JSP
 			// setter 設置變數
@@ -71,7 +77,7 @@ public class NewMem extends HttpServlet {
 			mem.setUserWeight(userWeight);
 			mem.setUserID(id);
 			System.out.println(id);
-			
+
 			// 傳給 JSP
 			request.setAttribute("mem", mem);
 			request.getRequestDispatcher("/html/NewMember.jsp").forward(request, response);

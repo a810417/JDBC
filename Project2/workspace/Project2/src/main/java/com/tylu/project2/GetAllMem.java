@@ -23,6 +23,7 @@ public class GetAllMem extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		Project2DAO dao = new Project2DAO();
 		try {
 			dao.createConnection();

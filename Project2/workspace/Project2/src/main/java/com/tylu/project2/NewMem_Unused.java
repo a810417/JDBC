@@ -37,6 +37,7 @@ public class NewMem_Unused extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 
 		// 取得網頁傳送的變數
 		// userAccount

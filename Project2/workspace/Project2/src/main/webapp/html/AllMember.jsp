@@ -26,12 +26,10 @@
 						<th>會員性別
 						<th>會員身高
 						<th>會員體重
-						<th>修改
-						<th>刪除 <% List<MemBean> mems = (ArrayList<MemBean>) request.getAttribute("mems");
+						<% List<MemBean> mems = (ArrayList<MemBean>) request.getAttribute("mems");
 									for (MemBean mem : mems) {
 									%>
-					<tr>
-						<form method="post" id="updateForm<%=mem.getUserID()%>" action="" enctype="multipart/form-data">
+					<tr>						
 							<td id="userId<%=mem.getUserID()%>" name="userId">
 								<%=mem.getUserID()%>
 							<td id="userAccount<%=mem.getUserID()%>" name="userAccount">
@@ -42,15 +40,16 @@
 								<%=mem.getUserHeight()%>
 							<td id="userWeight<%=mem.getUserID()%>" name="userWeight">
 								<%=mem.getUserWeight()%>
-							<td><input id="update<%=mem.getUserID()%>" type="submit" value="修改" onclick="updateBtn()">
-							<td><input id="delete<%=mem.getUserID()%>" type="submit" value="刪除" onclick="deleteBtn()">
-						</form>
-
 						<% } %>
 				</table>
 				<h3>
 					共<%=mems.size()%>筆會員資料
 				</h3>
+				<br />
+				<br />
+				<button>
+					<a href="http://localhost:8080/Project2/html/Delete.jsp">刪除會員</a>
+				</button>
 			</div>
 			<script src="https://code.jquery.com/jquery-3.6.1.js"
 				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
