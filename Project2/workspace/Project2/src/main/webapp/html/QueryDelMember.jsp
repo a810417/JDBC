@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>會員資料</title>
+		<title>Member Data</title>
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -203,7 +203,7 @@
 				<div class="form-holder">
 					<div class="form-content">
 						<div class="form-items">
-							<h3>刪 除 會 員 資 料</h3>
+							<h3>Delete Member</h3>
 							<form method="get" action="http://localhost:8080/Project2/DeleteMem">
 
 								<table>
@@ -242,9 +242,9 @@
 												readonly value="<%=mem.getUserWeight()%>" class="form-control"></td>
 									</tr>
 								</table>
-								<h3 style="color: #fff">確 定 刪 除 ?</h3>
+								<h3 style="color: #fff">Delete ?</h3>
 								<a href="http://localhost:8080/Project2/GetAllMem"><button
-										class="btn btn-primary">返回</button></a>
+										class="btn btn-primary">Back</button></a>
 
 								<input type="submit" value="刪除" class="btn btn-primary" />
 

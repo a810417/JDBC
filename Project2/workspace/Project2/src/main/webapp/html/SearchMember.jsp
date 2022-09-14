@@ -6,7 +6,7 @@
 
 		<head>
 			<meta charset="UTF-8">
-			<title>後台 - 會員資料</title>
+			<title>BackStage - MemberData</title>
 			<style>
 				@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -205,7 +205,7 @@
 						<div class="form-content">
 							<div class="form-items">
 
-								<h3>會 員 資 料</h3>
+								<h3>Member Data</h3>
 
 								<table border="1">
 									<tr>
@@ -234,7 +234,7 @@
 									共<%=mems.size()%>筆會員資料
 								</h3>
 								<a href="http://localhost:8080/Project2/GetAllMem"
-									style="text-decoration: none;"><button class="btn btn-primary">返回</button></a>
+									style="text-decoration: none;"><button class="btn btn-primary">Back</button></a>
 							</div>
 						</div>
 					</div>

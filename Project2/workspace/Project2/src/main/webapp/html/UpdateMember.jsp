@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>會員資料</title>
+        <title>Member</title>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -190,38 +190,38 @@
                 <div class="form-holder">
                     <div class="form-content">
                         <div class="form-items">
-                            <h3>修 改 後 會 員 資 料</h3>
+                            <h3>New Member Data</h3>
 
                             <jsp:useBean id="memNew" scope="request" class="com.tylu.bean.MemBean" />
                             <table>
 
                                 <tr>
-                                    <td>會員帳號</td>
+                                    <td>Account</td>
                                     <td class="mb-3 mr-1"><input name="userAccount" type="text" disabled
                                             value="<%= memNew.getUserAccount() %>" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td>會員密碼</td>
+                                    <td>Password</td>
                                     <td class="mb-3 mr-1"><input name="userPassword" type="text" disabled
                                             value="<%= memNew.getUserPassword() %>" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td>性別</td>
+                                    <td>Gender</td>
                                     <td class="mb-3 mr-1"><input name="userGender" type="text" disabled
                                             value="<%= memNew.getUserGender() %>" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td>身高</td>
+                                    <td>Height</td>
                                     <td class="mb-3 mr-1"><input name="userHeight" type="text" disabled
                                             value="<%= memNew.getUserHeight() %>" class="form-control"></td>
                                 </tr>
                                 <tr>
-                                    <td>體重</td>
+                                    <td>Weight</td>
                                     <td class="mb-3 mr-1"><input name="userWeight" type="text" disabled
                                             value="<%= memNew.getUserWeight() %>" class="form-control"></td>
                                 </tr>
                             </table>
-                            <h3 style="color:rgb(133, 132, 128)">修 改 完 成 !</h3>
+                            <h3 style="color:rgb(133, 132, 128)">Done !</h3>
 
                         </div>
                     </div>

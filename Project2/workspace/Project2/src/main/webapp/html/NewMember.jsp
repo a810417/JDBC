@@ -5,7 +5,7 @@ java.util.*" %>
 
 	<head>
 		<meta charset="UTF-8">
-		<title>會員資料</title>
+		<title>Welcome to LoveMaker</title>
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -230,31 +230,31 @@ java.util.*" %>
 				<div class="form-holder">
 					<div class="form-content">
 						<div class="form-items">
-							<h3>新 增 會 員 資 料</h3>
+							<h3>Create Member</h3>
 							<jsp:useBean id="mem" scope="request" class="com.tylu.bean.MemBean" />
 							<table class="requires-validation">
 								<tr>
-									<td class="mb-3 mr-1">會員帳號</td>
+									<td class="mb-3 mr-1">Account</td>
 									<td><input type="text" disabled value="<%=mem.getUserAccount()%>"
 											class="form-control"></td>
 								</tr>
 								<tr>
-									<td class="mb-3 mr-1">性別</td>
+									<td class="mb-3 mr-1">Gender</td>
 									<td><input type="text" disabled value="<%=mem.getUserGender()%>"
 											class="form-control"></td>
 								</tr>
 								<tr>
-									<td class="mb-3 mr-1">身高</td>
+									<td class="mb-3 mr-1">Height</td>
 									<td><input type="text" disabled value="<%=mem.getUserHeight()%>"
 											class="form-control"></td>
 								</tr>
 								<tr>
-									<td class="mb-3 mr-1">體重</td>
+									<td class="mb-3 mr-1">Weight</td>
 									<td><input type="text" disabled value="<%=mem.getUserWeight()%>"
 											class="form-control"></td>
 								</tr>
 								<tr>
-									<td class="mb-3 mr-1">會員圖片</td>
+									<td class="mb-3 mr-1">Member Photo</td>
 									<!-- <td><img src="http://localhost:8080/Project2/image/<%=mem.getUserID()%>.jpg" alt="MemberPhoto"
 								width="400px" height="300px"></td> -->
 									<td><img src="${pageContext.servletContext.contextPath}/image/<%=mem.getUserID()%>.jpg"
@@ -265,11 +265,12 @@ java.util.*" %>
 
 
 							</table>
-							<h3 style="color: #fff">新 增 完 成 !</h3>
+							<h3 style="color: #fff">Welcome !</h3>
 							<div class="form-button mt-3">
-								<button class="btn btn-primary">
-									<a href="http://localhost:8080/Project2/html/HomePage.html">首頁</a>
-								</button>
+								<a href="http://localhost:8080/Project2/html/HomePage.html"><button
+										class="btn btn-primary">
+										Home
+									</button></a>
 							</div>
 
 						</div>

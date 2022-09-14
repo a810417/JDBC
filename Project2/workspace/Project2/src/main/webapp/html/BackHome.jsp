@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>>管理系統</title>
+		<title>Manage System</title>
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -112,6 +112,7 @@
 
 			.btn-primary {
 				background-color: #6c757d;
+				color: white;
 				outline: none;
 				border: 0px;
 				box-shadow: none;
@@ -174,23 +175,30 @@
 					<div class="form-content">
 						<div class="form-items">
 
-							<h3>會 員 資 料 處 理</h3>
+							<h3>Member Data</h3>
 
 
 							<form action="http://localhost:8080/Project2/SearchMem" method="get">
 								<input type="text" name="searchText" placeholder="Search...">
-								<br/>
-								<br/>
-								<input type="submit" name="searchBtn" value="search" class="btn btn-primary">
+								<br />
+								<br />
+								<input type="submit" name="searchBtn" value="search" class="btn btn-primary"
+									align="center">
 							</form>
 
 							<br />
-							<a href="http://localhost:8080/Project2/GetAllMem"><button class="btn btn-primary">查詢所有會員資料
+							<a href="http://localhost:8080/Project2/GetAllMem" align="center"><button
+									class="btn btn-primary">Search All Members
 								</button></a>
 							<br>
 							<br>
-							<a href="http://localhost:8080/Project2/html/NewMember.html"><button
-									class="btn btn-primary">新增會員</button></a>
+							<a href="http://localhost:8080/Project2/html/NewMember.html" align="center"><button
+									class="btn btn-primary">New Member</button></a>
+
+							<br>
+							<br>
+							<a href="http://localhost:8080/Project2/html/HomePage.htmll" align="center"><button
+									class="btn btn-primary">Home</button></a>
 						</div>
 					</div>
 				</div>

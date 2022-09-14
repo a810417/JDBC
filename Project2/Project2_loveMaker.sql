@@ -16,7 +16,6 @@ createTime datetime default getdate()
 -- table photos
 create table photos(
 photoID int primary key identity(1,1)¡@not null,
---imageURL varchar(255) not null,
 imageFile varbinary(max) not null,
 userID int not null,
 foreign key (userID) references users(userID),
@@ -50,8 +49,9 @@ UPDATE users SET userPassword='man001', userGender='female', userHeight=160, use
 
 delete from likes where userID=;
 delete from photos where userID=2;
-delete from users where userID=4;
+delete from users where userID=27;
 
 INSERT INTO users (userName, userPassword, userGender, userHeight, userWeight) VALUES ('Alan', 'aaa000', 'Male', 180, 70);
 
 select * from users 
+delete from users where userID=1;

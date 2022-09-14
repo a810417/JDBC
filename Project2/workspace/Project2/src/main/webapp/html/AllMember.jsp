@@ -6,7 +6,7 @@
 
 		<head>
 			<meta charset="UTF-8">
-			<title>後台 - 會員資料</title>
+			<title>BackStage - MemberData</title>
 			<style>
 				@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -177,6 +177,10 @@
 					background-color: #ebeff8;
 					color: #707070;
 				}
+
+				table {
+					width: 95%;
+				}
 			</style>
 			<script>
 				(function () {
@@ -203,11 +207,13 @@
 				<div class="row">
 					<div class="form-holder">
 						<div class="form-content">
-							<div class="form-items">
-								<h3 style="color: white">會 員 資 料</h3>
-								<form action="http://localhost:8080/Project2/SearchMem" method="get">
+							<div class="form-items" align="center">
+								<h3 style="color: white">Member</h3>
+								<form action="http://localhost:8080/Project2/SearchMem" method="get" align="center">
 									<input type="text" name="searchText" placeholder="Search...">
-									<input type="submit" name="searchBtn" value="search">
+									<br>
+									<br>
+									<input type="submit" name="searchBtn" value="search" class="btn btn-primary">
 								</form>
 								<br>
 								<table border="1">
@@ -217,7 +223,6 @@
 										<th class="col-md-12">會員性別
 										<th class="col-md-12">會員身高
 										<th class="col-md-12">會員體重
-										<th class="col-md-12">修改
 											<% List<MemBean> mems = (ArrayList<MemBean>) request.getAttribute("mems");
 													for (MemBean mem : mems) {
 													%>
@@ -232,21 +237,20 @@
 											<%=mem.getUserHeight()%>
 										<td name="userWeight" class="col-md-12" value="<%=mem.getUserWeight()%>">
 											<%=mem.getUserWeight()%>
-										<td class="col-md-12" id="updateBtn"><input type="button" value="update">
-											<% } %>
+
+												<% } %>
 								</table>
 								<h3>
 									共<%=mems.size()%>筆會員資料
 								</h3>
 								<br />
-								<br />
 								<a href="http://localhost:8080/Project2/html/BackHome.jsp"><button
-										class="btn btn-primary">
-										返回
+										class="btn btn-primary" align="center">
+										Back
 									</button></a>
-								<a href="http://localhost:8080/Project2/html/Delete.jsp"><button
-										class="btn btn-primary">
-										刪除會員
+								<a href="http://localhost:8080/Project2/html/Delete.jsp"><button class="btn btn-primary"
+										align="center">
+										Delete
 									</button></a>
 
 							</div>
@@ -258,7 +262,7 @@
 				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 			<script>
 				$("#updateBtn").on("click", function () {
-					let userID = $(this).prev().prev().prev().prev().prev().val();
+					let userID = $(this).prev().prev().prev().prev().prev().text();
 					console.log(userID);
 				})
 			</script>
