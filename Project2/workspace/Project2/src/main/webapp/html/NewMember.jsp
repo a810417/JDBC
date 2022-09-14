@@ -111,6 +111,7 @@ java.util.*" %>
 
 			.btn-primary {
 				background-color: #6c757d;
+				color: white;
 				outline: none;
 				border: 0px;
 				box-shadow: none;

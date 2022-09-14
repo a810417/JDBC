@@ -23,7 +23,7 @@
 				body {
 					height: 100%;
 					background-color: #152733;
-					overflow: hidden;
+					overflow: scroll;
 				}
 
 				.form-holder {
@@ -217,21 +217,23 @@
 										<th class="col-md-12">會員性別
 										<th class="col-md-12">會員身高
 										<th class="col-md-12">會員體重
+										<th class="col-md-12">修改
 											<% List<MemBean> mems = (ArrayList<MemBean>) request.getAttribute("mems");
 													for (MemBean mem : mems) {
 													%>
 									<tr>
-										<td id="userId<%=mem.getUserID()%>" name="userId" class="col-md-12">
+										<td name="userId" class="col-md-12" value="<%=mem.getUserID()%>">
 											<%=mem.getUserID()%>
-										<td id="userAccount<%=mem.getUserID()%>" name="userAccount" class="col-md-12">
+										<td name="userAccount" class="col-md-12" value="<%=mem.getUserAccount()%>">
 											<%=mem.getUserAccount()%>
-										<td id="userGender<%=mem.getUserID()%>" name="userGender" class="col-md-12">
+										<td name="userGender" class="col-md-12" value="<%=mem.getUserGender()%>">
 											<%=mem.getUserGender()%>
-										<td id="userHeight<%=mem.getUserID()%>" name="userHeight" class="col-md-12">
+										<td name="userHeight" class="col-md-12" value="<%=mem.getUserHeight()%>">
 											<%=mem.getUserHeight()%>
-										<td id="userWeight<%=mem.getUserID()%>" name="userWeight" class="col-md-12">
+										<td name="userWeight" class="col-md-12" value="<%=mem.getUserWeight()%>">
 											<%=mem.getUserWeight()%>
-												<% } %>
+										<td class="col-md-12" id="updateBtn"><input type="button" value="update">
+											<% } %>
 								</table>
 								<h3>
 									共<%=mems.size()%>筆會員資料
@@ -254,6 +256,12 @@
 			</div>
 			<script src="https://code.jquery.com/jquery-3.6.1.js"
 				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+			<script>
+				$("#updateBtn").on("click", function () {
+					let userID = $(this).prev().prev().prev().prev().prev().val();
+					console.log(userID);
+				})
+			</script>
 
 		</body>
 

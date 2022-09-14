@@ -110,6 +110,7 @@
 
             .btn-primary {
                 background-color: #6c757d;
+                color: white;
                 outline: none;
                 border: 0px;
                 box-shadow: none;
@@ -183,7 +184,7 @@
         </script>
     </head>
 
-    <body style="background-color:#fdf5e6" align="center">
+    <body align="center">
         <div class="form-body">
             <div class="row">
                 <div class="form-holder">

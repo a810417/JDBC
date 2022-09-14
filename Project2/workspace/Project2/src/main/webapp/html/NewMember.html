@@ -111,6 +111,7 @@
 
         .btn-primary {
             background-color: #6c757d;
+            color: white;
             outline: none;
             border: 0px;
             box-shadow: none;
@@ -181,6 +182,32 @@
                 })
         })()
 
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+
+                // var imageTagID = input.getAttribute("targetID");
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    // var img = document.getElementById(imageTagID);
+
+                    // img.setAttribute("src", e.target.result)
+                    // document.getElementById("formMem").innerHTML = `<img width="300px" height="240px" id="preview_progressbarTW_img" src="${e.target.result}" />`
+                    var imageNew = document.createElement("img");
+                    imageNew.setAttribute("width", "120px");
+                    imageNew.setAttribute("height", "80px");
+                    imageNew.setAttribute("src", `${e.target.result}`);
+                    document.getElementById("imgDiv").appendChild(imageNew);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+
+        }
+
     </script>
 </head>
 
@@ -223,9 +250,10 @@
                             </div>
                             <div class="col-md-12"></div>
                             <br />
-                            <div class="col-md-12 mt-3">
+                            <div class="col-md-12 mt-3" id="imgDiv">
                                 <label class="mb-3 mr-1" for="photo">Photo: </label>
-                                <input type="file" id="userPhoto" name="userPhoto" class="btn btn-primary">
+                                <input type="file" id="userPhoto" name="userPhoto" class="btn btn-primary"
+                                    onchange="readURL(this)">
 
                             </div>
 

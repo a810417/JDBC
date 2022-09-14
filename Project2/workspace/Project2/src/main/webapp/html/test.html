@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="formMem" action="/somewhere/to/upload" enctype="multipart/form-data">
+
+        <input type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img"
+            accept="image/gif, image/jpeg, image/png" />
+
+        <!-- <img width="300px" height="240px" id="preview_progressbarTW_img" src="#" /> -->
+
+    </form>
+
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+
+                var imageTagID = input.getAttribute("targetID");
+
+                var reader = new FileReader();
+
+
+
+                reader.onload = function (e) {
+
+                    // var img = document.getElementById(imageTagID);
+
+                    // img.setAttribute("src", e.target.result)
+                    // document.getElementById("formMem").innerHTML = `<img width="300px" height="240px" id="preview_progressbarTW_img" src="${e.target.result}" />`
+                    var imageNew = document.createElement("img");
+                    imageNew.setAttribute("width", "300px");
+                    imageNew.setAttribute("height", "240px");
+                    imageNew.setAttribute("src", `${e.target.result}`);
+                    document.getElementById("formMem").appendChild(imageNew);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -179,6 +179,8 @@
 
 							<form action="http://localhost:8080/Project2/SearchMem" method="get">
 								<input type="text" name="searchText" placeholder="Search...">
+								<br/>
+								<br/>
 								<input type="submit" name="searchBtn" value="search" class="btn btn-primary">
 							</form>
 
