@@ -253,15 +253,15 @@ java.util.*" %>
 									<td><input type="text" disabled value="<%=mem.getUserWeight()%>"
 											class="form-control"></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td class="mb-3 mr-1">Member Photo</td>
-									<!-- <td><img src="http://localhost:8080/Project2/image/<%=mem.getUserID()%>.jpg" alt="MemberPhoto"
-								width="400px" height="300px"></td> -->
+									<td><img src="http://localhost:8080/Project2/image/<%=mem.getUserID()%>.jpg" alt="MemberPhoto"
+								width="400px" height="300px"></td>
 									<td><img src="${pageContext.servletContext.contextPath}/image/<%=mem.getUserID()%>.jpg"
 											alt=""></td>
 									<br />
 
-								</tr>
+								</tr> -->
 
 
 							</table>

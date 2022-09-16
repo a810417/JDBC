@@ -6,7 +6,7 @@
 
 		<head>
 			<meta charset="UTF-8">
-			<title>BackStage - MemberData</title>
+			<title>BackEnd - MemberData</title>
 			<style>
 				@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 

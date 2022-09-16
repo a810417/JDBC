@@ -197,7 +197,7 @@
 
 							<br>
 							<br>
-							<a href="http://localhost:8080/Project2/html/HomePage.htmll" align="center"><button
+							<a href="http://localhost:8080/Project2/html/HomePage.html" align="center"><button
 									class="btn btn-primary">Home</button></a>
 						</div>
 					</div>

@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>會員資料</title>
+		<title>Member Data</title>
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -230,7 +230,7 @@
 												value="<%=mem.getUserWeight()%>" class="form-control"></td>
 									</tr>
 								</table>
-								<h3 style="color: #fff">請 輸 入 新 資 料 !</h3>
+								<h3 style="color: #fff">Type New Data</h3>
 								<input type="submit" value="修改" class="btn btn-primary" />
 							</form>
 						</div>

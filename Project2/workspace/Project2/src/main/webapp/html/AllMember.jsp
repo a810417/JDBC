@@ -6,7 +6,7 @@
 
 		<head>
 			<meta charset="UTF-8">
-			<title>BackStage - MemberData</title>
+			<title>BackEnd - MemberData</title>
 			<style>
 				@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -223,6 +223,8 @@
 										<th class="col-md-12">會員性別
 										<th class="col-md-12">會員身高
 										<th class="col-md-12">會員體重
+										<th class="col-md-12">會員照片
+
 											<% List<MemBean> mems = (ArrayList<MemBean>) request.getAttribute("mems");
 													for (MemBean mem : mems) {
 													%>
@@ -237,8 +239,12 @@
 											<%=mem.getUserHeight()%>
 										<td name="userWeight" class="col-md-12" value="<%=mem.getUserWeight()%>">
 											<%=mem.getUserWeight()%>
+										<td><img src="${pageContext.servletContext.contextPath}/image/<%=mem.getUserID()%>.jpg"
+												width="60px" height="48px">
 
-												<% } %>
+
+
+											<% } %>
 								</table>
 								<h3>
 									共<%=mems.size()%>筆會員資料
@@ -252,6 +258,10 @@
 										align="center">
 										Delete
 									</button></a>
+								<a href="http://localhost:8080/Project2/html/UpdateOne.jsp"><button
+										class="btn btn-primary" align="center">
+										Update
+									</button></a>
 
 							</div>
 						</div>
@@ -261,9 +271,13 @@
 			<script src="https://code.jquery.com/jquery-3.6.1.js"
 				integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 			<script>
-				$("#updateBtn").on("click", function () {
-					let userID = $(this).prev().prev().prev().prev().prev().text();
-					console.log(userID);
+				$("img").on("click", function () {
+					let userWeight = $(this).parent().prev();
+					console.log(userWeight);
+					let weightValue = userWeight.text();
+					console.log(weightValue);
+					let tdImg = $(this).parent();
+					console.log(tdImg);
 				})
 			</script>
 

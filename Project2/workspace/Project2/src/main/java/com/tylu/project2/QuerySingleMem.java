@@ -26,14 +26,14 @@ public class QuerySingleMem extends HttpServlet {
 	private static final String USER = "sa";
 	private static final String PASSWORD = "P@ssw0rd";
 	private static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private static final String SQL = "SELECT * FROM users WHERE userID = ?;";
+	private static final String SQL = "SELECT * FROM users WHERE userName = ?;";
 	Connection conn;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 取得網頁傳送的變數
 		// userID		
-		String userID = request.getParameter("userID");
+		String userAccount = request.getParameter("userAccount");
 
 		try {
 			// 開啟連線
@@ -47,7 +47,7 @@ public class QuerySingleMem extends HttpServlet {
 //			conn = ds.getConnection();
 
 			// 設定 SQL 語法
-			preState.setString(1, userID);
+			preState.setString(1, userAccount);
 
 			// 執行 SQL(取得查詢的資料 ResultSet)
 			ResultSet rs = preState.executeQuery();

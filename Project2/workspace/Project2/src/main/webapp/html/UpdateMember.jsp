@@ -163,6 +163,16 @@
             .valid-feedback {
                 color: #2acc80;
             }
+            td {
+				color: #fff;
+				text-align: left;
+				font-size: 20px;
+				font-weight: 450;
+				margin-bottom: 5px;
+			}
+			a {
+				text-decoration: none;
+			}
         </style>
         <script>
             (function () {
@@ -221,7 +231,11 @@
                                             value="<%= memNew.getUserWeight() %>" class="form-control"></td>
                                 </tr>
                             </table>
-                            <h3 style="color:rgb(133, 132, 128)">Done !</h3>
+                            <h3 style="color:#fff">Done !</h3>
+                            <br>
+							<br>
+							<a href="http://localhost:8080/Project2/html/HomePage.html" align="center"><button
+									class="btn btn-primary">Home</button></a>
 
                         </div>
                     </div>

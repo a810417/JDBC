@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Member Data</title>
+		<title>Delete Member</title>
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
 
@@ -163,107 +163,51 @@
 			.valid-feedback {
 				color: #2acc80;
 			}
-
-			td {
-				color: #fff;
-				text-align: left;
-				font-size: 20px;
-				font-weight: 450;
-				margin-bottom: 5px;
-			}
-
-			a {
-				text-decoration: none;
-			}
 		</style>
 		<script>
 			(function () {
 				'use strict'
 				const forms = document.querySelectorAll('.requires-validation')
-				Array.from(forms)
-					.forEach(function (form) {
-						form.addEventListener('submit', function (event) {
-							if (!form.checkValidity()) {
-								event.preventDefault()
-								event.stopPropagation()
-							}
+				Array.from(forms).forEach(function (form) {
+					form.addEventListener('submit', function (event) {
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+						}
 
-							form.classList.add('was-validated')
-						}, false)
-					})
+						form.classList.add('was-validated')
+					}, false)
+				})
 			})()
-
 		</script>
 	</head>
 
 	<body>
-		<jsp:useBean id="mem" scope="request" class="com.tylu.bean.MemBean" />
 		<div class="form-body">
 			<div class="row">
 				<div class="form-holder">
 					<div class="form-content">
 						<div class="form-items">
-							<h3>Delete Member</h3>
-							<form method="get" action="http://localhost:8080/Project2/DeleteMem">
+							<form action="../QuerySingleMem" method="get">
+								<h3>輸入帳號</h3>
 
-								<table>
-									<tr>
-										<td>會員ID</td>
-										<td class="mb-3 mr-1"><input id="userID" name="userID" type="text" readonly
-												value="<%=mem.getUserID()%>" class="form-control"></td>
-									</tr>
-									<tr>
-										<td>會員帳號</td>
-										<td class="mb-3 mr-1"><input id="userAccount" name="userAccount" type="text"
-												readonly value="<%=mem.getUserAccount()%>" class="form-control"></td>
-									</tr>
-									<tr>
-										<td>會員密碼</td>
-										<td class="mb-3 mr-1"><input id="userPassword" name="userPassword" type="text"
-												readonly value="<%=mem.getUserPassword()%>" class="form-control">
-										</td>
-									</tr>
-									<tr>
-										<td>性別</td>
-										<td class="mb-3 mr-1"><select name="userGender" id="userGender" readonly>
-												<option readonly selected>
-													<%=mem.getUserGender()%>
-												</option>
-											</select></td>
-									</tr>
-									<tr>
-										<td>身高</td>
-										<td class="mb-3 mr-1"><input id="userHeight" name="userHeight" type="text"
-												readonly value="<%=mem.getUserHeight()%>" class="form-control"></td>
-									</tr>
-									<tr>
-										<td>體重</td>
-										<td class="mb-3 mr-1"><input id="userWeight" name="userWeight" type="text"
-												readonly value="<%=mem.getUserWeight()%>" class="form-control"></td>
-									</tr>
-								</table>
-								<h3 style="color: #fff">Delete ?</h3>
-								
+								<div class="col-md-12">
+									<input type="text" id="userAccount" name="userAccount" placeholder="account"
+										autofocus required class="form-control">
+								</div>
 
-								<input type="submit" value="Delete " class="btn btn-primary" />
+								<br />
+								<div class="form-button mt-3">
+									<input type="submit" value="Send" class="btn btn-primary">
+									<input type="reset" value="Clear" class="btn btn-primary">
+								</div>
 
 							</form>
-							<form action="http://localhost:8080/Project2/GetAllMem"><button
-										class="btn btn-primary">Cancel</button></form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script>
-			var idTag = document.getElementById("userID");
-			var idTagValue = idTag.value;
-			console.log(idTag);
-			console.log(idTagValue);
-			if (idTagValue === null) {
-				console.log("NONONO");
-			}
-		</script>
 	</body>
 
 	</html>
